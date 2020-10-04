@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProductShop2Tutorial.Models;
 
 namespace ProductShop2Tutorial {
     public class Startup {
@@ -18,7 +20,15 @@ namespace ProductShop2Tutorial {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
+            //Enable MVC
             services.AddControllersWithViews();
+            
+            //Enable ShopContext
+            services.AddDbContext<ShopContext>(
+                options => options.UseSqlServer(
+                    Configuration.GetConnectionString("ShopContext")
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
