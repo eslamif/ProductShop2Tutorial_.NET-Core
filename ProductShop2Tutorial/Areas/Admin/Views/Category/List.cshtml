@@ -1,0 +1,41 @@
+﻿@model List<Category>
+
+@{ 
+    ViewBag.Title = "Category Manager";
+}
+
+<h1>Category Manager</h1>
+
+<div>
+    @* Add Category Link *@
+    <div class="float-right">
+        <a asp-controller="Category" asp-action="Add" class="btn btn-primary">Add Category</a>
+    </div>
+
+    @* Category Table *@
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var category in Model) {
+            <tr>
+                <td>@category.Name</td>
+
+                <td>
+                    <a asp-controller="Category" asp-action="Update" asp-route-id="@category.CategoryID">Update</a>
+                </td>
+
+                <td>
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.CategoryID">Delete</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
