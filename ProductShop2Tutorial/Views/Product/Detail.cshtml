@@ -6,21 +6,32 @@
 
 <h1>Product Detail</h1>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <td>ID</td>
-        <td>@Model.ProductID</td>
-    </tr>
+<div class="row">
+    @*Product Image*@
+    <div class="col-sm-4">
+        <img src="~/Images/@ViewBag.ImageFileName" alt="@Model.Name" class="img-fluid d-block mx-auto" />
+    </div>
 
-    <tr>
-        <td>Name</td>
-        <td>@Model.Name</td>
-    </tr>
+    @*Product Table*@
+    <div class="col-sm-8">
+        <h2>@Model.Name</h2>
+        <h3>@ViewBag.CategoryName</h3>
 
-    <tr>
-        <td>Price</td>
-        <td>@Model.Price.ToString("C2")</td>
-    </tr>
-</table>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>List Price:</td>
+                <td>@Model.Price.ToString("C")</td>
+            </tr>
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home</a>
+            <tr>
+                <td>Discount Percent:</td>
+                <td>@Model.DiscountPercent.ToString("P0")</td>
+            </tr>
+
+            <tr>
+                <td>Your Price:</td>
+                <td>@Model.DiscountedPrice.ToString("C")</td>
+            </tr>
+        </table>
+    </div>
+</div>
