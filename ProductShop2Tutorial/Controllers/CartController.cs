@@ -10,8 +10,8 @@ namespace ProductShop2Tutorial.Controllers {
             return View();
         }
 
-        public IActionResult Add(string productSlug) {
-            ViewBag.ProductSlug = productSlug;
+        public IActionResult Add(string id) {
+            ViewBag.ProductSlug = id;
             return View();
         }
     }
