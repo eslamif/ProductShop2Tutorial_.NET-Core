@@ -37,19 +37,19 @@ namespace ProductShop2Tutorial.Controllers {
             return View(product);
         }
 
-        [Route("[controller]s/{categoryName?}")]
-        public IActionResult List(string categoryName = null) {
+        [Route("[controller]s/{id?}")]
+        public IActionResult List(string id = null) {
             var categories = shopContext.Categories.OrderBy(c => c.CategoryID).ToList();
             List<Product> products;
 
-            if (categoryName == null) {
+            if (id == null) {
                 products = shopContext.Products.OrderBy(p => p.Name).ToList();
             }
             else {
-                products = shopContext.Products.Where(p => p.Name == categoryName).OrderBy(p => p.Name).ToList();
+                products = shopContext.Products.Where(p => p.Category.Name == id).OrderBy(p => p.Name).ToList();
             }
 
-            ViewBag.SelectedCategoryName = categoryName;
+            ViewBag.SelectedCategoryName = id;
             ViewBag.Categories = categories;
 
             return View(products);

@@ -11,7 +11,7 @@
     <div class="col-sm-2">
         <div class="list-group">
             @foreach (var category in ViewBag.Categories) {
-                <a asp-controller="Product" asp-action="List" asp-route-categoryName="@category.Name" class="list-group-item">@category.Name</a>
+                <a asp-controller="Product" asp-action="List" asp-route-id="@category.Name" class="list-group-item">@category.Name</a>
             }
         </div>
     </div>
