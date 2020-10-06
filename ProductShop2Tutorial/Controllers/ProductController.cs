@@ -38,11 +38,11 @@ namespace ProductShop2Tutorial.Controllers {
         }
 
         [Route("[controller]s/{id?}")]
-        public IActionResult List(string id = null) {
+        public IActionResult List(string id = "All") {
             var categories = shopContext.Categories.OrderBy(c => c.CategoryID).ToList();
             List<Product> products;
 
-            if (id == null) {
+            if (id == "All") {
                 products = shopContext.Products.OrderBy(p => p.Name).ToList();
             }
             else {
