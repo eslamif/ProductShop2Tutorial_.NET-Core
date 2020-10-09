@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,16 +21,21 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                        </li>
-                    </ul>
-                </div>
+
+                <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                    @* Nav Menu *@
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-link @(controller == "Home" && action == "Index" ? "active" : "")" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link @(controller == "Product" ? "active" : "")" asp-controller="Product" asp-action="List">Products</a>
+                        <a class="nav-link @(controller == "Home" && action == "About" ? "active" : "")" asp-controller="Home" asp-action="About">About</a>
+                    </div>
+
+                    @* Admin Link *@
+                    <div class="navbar-nav">
+                        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                    </div>
+                </nav>
+
             </div>
         </nav>
     </header>
@@ -37,7 +47,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - ProductShop2Tutorial - <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+            &copy; @DateTime.Now.Year - Product Shop 2 Tutorial
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
