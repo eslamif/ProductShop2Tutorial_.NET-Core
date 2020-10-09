@@ -10,11 +10,13 @@
     @*Categories*@
     <div class="col-sm-2">
         <div class="list-group">
-            <a asp-controller="Product" asp-action="List" asp-route-id="All" class="list-group-item @(ViewBag.SelectedCategoryName == "All" ? "active" : "")")>All</a>
+            <a asp-controller="Product" asp-action="List" asp-route-id="All" class="list-group-item @(ViewBag.SelectedCategoryName == "All" ? "active" : "")" )>All</a>
 
             @foreach (var category in ViewBag.Categories) {
                 <a asp-controller="Product" asp-action="List" asp-route-id="@category.Name" class="list-group-item @(ViewBag.SelectedCategoryName == category.Name ? "active" : "")">@category.Name</a>
             }
+
+            <a asp-controller="Product" asp-action="List" asp-route-id="Specials" class="list-group-item @(ViewBag.SelectedCategoryName == "Specials" ? "active" : "")" )>Special Deals</a>
         </div>
     </div>
 

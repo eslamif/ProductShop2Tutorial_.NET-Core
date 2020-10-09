@@ -45,6 +45,9 @@ namespace ProductShop2Tutorial.Controllers {
             if (id == "All") {
                 products = shopContext.Products.OrderBy(p => p.Name).ToList();
             }
+            else if (id == "Specials") {
+                products = shopContext.Products.Where(p => p.Price < 5.0M).OrderBy(p => p.Name).ToList();
+            }
             else {
                 products = shopContext.Products.Where(p => p.Category.Name == id).OrderBy(p => p.Name).ToList();
             }
