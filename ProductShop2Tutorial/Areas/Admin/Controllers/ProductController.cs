@@ -67,14 +67,19 @@ namespace ProductShop2Tutorial.Areas.Admin.Controllers {
         [HttpPost]
         public IActionResult Update(Product product) {
             if (ModelState.IsValid) {
+                string userMessage = "";
+
                 if (product.ProductID == 0) {
                     shopContext.Products.Add(product);
+                    userMessage = "You just added a new product: " + product.Name;
                 }
                 else {
                     shopContext.Products.Update(product);
+                    userMessage = "You just updated a product: " + product.Name;
                 }
 
                 shopContext.SaveChanges();
+                TempData["UserMessage"] = userMessage;
                 return RedirectToAction("List", "Product");
             }
             else {

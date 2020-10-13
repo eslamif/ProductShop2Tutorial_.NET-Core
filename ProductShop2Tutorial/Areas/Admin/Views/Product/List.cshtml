@@ -27,6 +27,15 @@
 
     @*Products table *@
     <div class="col-sm-10">
+        @* User Message *@
+        @{
+            string userMessage = TempData?["UserMessage"]?.ToString() ?? "";
+
+            if (userMessage != "") {
+                <div class="text-success">@userMessage</div>
+            }
+        }
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
