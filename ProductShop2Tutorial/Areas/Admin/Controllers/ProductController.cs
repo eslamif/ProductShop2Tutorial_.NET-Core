@@ -34,10 +34,13 @@ namespace ProductShop2Tutorial.Areas.Admin.Controllers {
                 products = shopContext.Products.Where(p => p.Category.Name == id).OrderBy(p => p.Name).ToList();
             }
 
-            ViewBag.Categories = categories;
-            ViewBag.SelectedCategoryName = id;
+            var model = new ProductListViewModel {
+                Categories = categories,
+                Products = products,
+                SelectedCategoryName = id
+            };
 
-            return View(products);
+            return View(model);
         }
 
         [HttpGet]
