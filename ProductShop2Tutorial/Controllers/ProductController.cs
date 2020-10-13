@@ -52,10 +52,13 @@ namespace ProductShop2Tutorial.Controllers {
                 products = shopContext.Products.Where(p => p.Category.Name == id).OrderBy(p => p.Name).ToList();
             }
 
-            ViewBag.SelectedCategoryName = id;
-            ViewBag.Categories = categories;
+            var model = new ProductListViewModel {
+                Categories = categories,
+                Products = products,
+                SelectedCategoryName = id
+            };
 
-            return View(products);
+            return View(model);
         }
     }
 }
